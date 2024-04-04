@@ -5,6 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Provocări și Recompense - EcoTracker</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        var provocari = [
+            { nume: 'Redu consumul de apă cu 10%', puncte: 100, insigna: 'EcoHero' },
+            {nume: 'Redu consumul de combustibil cu 15%', puncte: 200, insigna: 'EcoTrack'}
+        ];
+    
+        window.onload = function () {
+            afiseazaProvocari();
+        };
+    
+        function afiseazaProvocari() {
+            var listaProvocari = document.getElementById('provocari-list');
+            listaProvocari.innerHTML = ''; 
+    
+            provocari.forEach(function (provocare) {
+                var item = document.createElement('li');
+                item.innerHTML = `
+                    <strong>${provocare.nume}</strong> - Câștigă ${provocare.puncte} puncte și insigna "${provocare.insigna}"
+                    <button onclick="participaLaProvocare('${provocare.nume}', ${provocare.puncte}, '${provocare.insigna}')">Participă</button>
+                `;
+                listaProvocari.appendChild(item);
+            });
+        }
+    
+        function participaLaProvocare(nume, puncte, insigna) {
+            
+            alert('Ai participat cu succes la provocarea: ' + nume + '. Ai câștigat ' + puncte + ' puncte și insigna "' + insigna + '".');
+        }
+    </script>
+    
 </head>
 <body>
     <header>
@@ -23,11 +53,12 @@
         <section class="provocari">
             <h2>Participă la provocări săptămânale</h2>
             <p>Redu consumul pentru a câștiga puncte și insigne!</p>
-            <ul>
-                <li>Provocarea săptămânii: Redu consumul de apă cu 10%.</li>
-                <li>Recompensă: 100 puncte și insigna "EcoHero".</li>
+            <ul id="provocari-list">
+                
             </ul>
         </section>
+        
+        
     </main>
     <footer>
         <p>&copy; 2024 EcoTracker. Toate drepturile rezervate.</p>
