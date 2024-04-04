@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitorizare Consum - EcoTracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>EcoTracker - Monitorizare Consum</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Acasă</a></li>
+                <li><a href="consum.html">Monitorizare Consum</a></li>
+                <li><a href="provocari.html">Provocări și Recompense</a></li>
+                <li><a href="sfaturi.html">Sfaturi Personalizate</a></li>
+                <li><a href="comunitate.html">Comunitate</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="consum-form">
+            <h2>Introdu datele de consum</h2>
+            <form action="submit_consum.php" method="POST">
+                <label for="apa">Consum de apă (L):</label>
+                <input type="number" id="apa" name="apa" required>
+                <label for="electricitate">Consum de electricitate (kWh):</label>
+                <input type="number" id="electricitate" name="electricitate" required>
+                <label for="combustibil">Consum de combustibil (litri):</label>
+                <input type="number" id="combustibil" name="combustibil" required>
+                <button type="submit" class="btn">Trimite</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 EcoTracker. Toate drepturile rezervate.</p>
+    </footer>
+</body>
+</html>
