@@ -16,6 +16,7 @@
                 <li><a href="provocari.html">Provocări și Recompense</a></li>
                 <li><a href="sfaturi.html">Sfaturi Personalizate</a></li>
                 <li><a href="comunitate.html">Comunitate</a></li>
+                <li id="usernameDisplay" style="display: none;"></li> <!-- Added username display -->
             </ul>
         </nav>
     </header>
@@ -23,11 +24,50 @@
         <section class="hero">
             <h2>Bine ai venit la EcoTracker!</h2>
             <p>Monitorizează-ți consumul, ia parte la provocări și descoperă cum poți reduce amprenta ecologică.</p>
-            <a href="consum.html" class="btn">Începe acum</a>
+            <a href="consum.html" class="btn" id="startButton" disabled>Începe acum</a> <!-- Disabled by default -->
+        </section>
+
+        <section id="loginSection" class="login">
+            <h2>Autentificare</h2>
+            <form id="loginForm" action="login" method="POST" onsubmit="checkLogin(event)">
+                <label for="username">Nume utilizator:</label>
+                <input type="text" id="username" name="username" required><br>
+                <label for="password">Parolă:</label>
+                <input type="password" id="password" name="password" required><br>
+                <button type="submit">Autentificare</button>
+            </form>
+            <p id="welcomeMessage" style="display: none;"></p>
         </section>
     </main>
     <footer>
         <p>&copy; 2024 EcoTracker. Toate drepturile rezervate.</p>
     </footer>
+
+    <script>
+        function checkLogin(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            const usernameInput = document.getElementById('username').value;
+            const storedUsername = localStorage.getItem('username');
+
+            if (usernameInput === storedUsername) {
+                const loginSection = document.getElementById('loginSection');
+                loginSection.style.display = 'none'; // Hide the login section
+                const welcomeMessage = document.getElementById('welcomeMessage');
+                welcomeMessage.textContent = `Bine ați venit, ${usernameInput}!`;
+                welcomeMessage.style.display = 'block'; // Display the welcome message
+
+                const usernameDisplay = document.getElementById('usernameDisplay');
+                usernameDisplay.textContent = `Bine ați venit, ${usernameInput}!`;
+                usernameDisplay.style.display = 'inline'; // Display the username in the top right corner
+
+                const startButton = document.getElementById('startButton');
+                startButton.removeAttribute('disabled'); // Enable the "Începe acum" button
+            } else {
+                alert('Nume utilizator sau parolă greșite.');
+            }
+        }
+    </script>
+    
 </body>
 </html>
