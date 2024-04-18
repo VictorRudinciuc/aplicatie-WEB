@@ -1,19 +1,19 @@
-
+/* Resetare stiluri implicite */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-
+/* Stilizare generală */
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    background-color: #f9f9f9;
+    background-color: #e6f7e5; /* Light green background */
 }
 
 header, footer {
-    background-color: #333;
+    background-color: #388E3C; /* Dark green header and footer */
     color: #fff;
     padding: 1rem;
 }
@@ -38,7 +38,7 @@ main {
 
 .btn {
     display: inline-block;
-    background-color: #333;
+    background-color: #4CAF50; /* Green button */
     color: #fff;
     padding: 0.5rem 1rem;
     text-decoration: none;
@@ -46,14 +46,14 @@ main {
 }
 
 .btn:hover {
-    background-color: #444;
+    background-color: #388E3C; /* Darker green on hover */
 }
 
-
+/* Stilizare specifică paginii de start */
 .hero {
     text-align: center;
     padding: 2rem;
-    background-color: #f0f0f0;
+    background-color: #b3e0cc; /* Dark green background */
 }
 
 .hero h2 {
@@ -61,11 +61,11 @@ main {
     margin-bottom: 1rem;
 }
 
-
+/* Stilizare specifică formularului de monitorizare a consumului */
 .consum-form {
     max-width: 400px;
     margin: 0 auto;
-    background-color: #fff;
+    background-color: #e6f7e5; /* Light green form background */
     padding: 1rem;
     border-radius: 5px;
 }
@@ -89,7 +89,7 @@ main {
 /* Stilizare specifică paginii de provocări și recompense */
 .provocari {
     padding: 2rem;
-    background-color: #fff;
+    background-color: #b3e0cc; /* Dark green background */
     border-radius: 5px;
 }
 
