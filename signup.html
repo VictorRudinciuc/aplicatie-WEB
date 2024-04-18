@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTracker - Înregistrare</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>EcoTracker - Înregistrare</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Acasă</a></li>
+                <li><a href="consum.html">Monitorizare Consum</a></li>
+                <li><a href="provocari.html">Provocări și Recompense</a></li>
+                <li><a href="sfaturi.html">Sfaturi Personalizate</a></li>
+                <li><a href="comunitate.html">Comunitate</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="signup">
+            <h2>Înregistrare</h2>
+            <form id="signupForm" action="register" method="POST" onsubmit="saveCredentialsAndRedirect(event)">
+                <label for="fullname">Nume complet:</label>
+                <input type="text" id="fullname" name="fullname" required><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br>
+                <label for="username">Nume utilizator:</label>
+                <input type="text" id="username" name="username" required><br>
+                <label for="password">Parolă:</label>
+                <input type="password" id="password" name="password" required><br>
+                <button type="submit">Înregistrare</button>
+            </form>
+            
+        </section>
+        <script>
+            function saveCredentialsAndRedirect(event) {
+                event.preventDefault(); // Prevent the form from submitting normally
+        
+                // Get form data
+                const formData = new FormData(event.target);
+        
+                // Save credentials to localStorage (this is just an example, not secure for real-world use)
+                localStorage.setItem('fullname', formData.get('fullname'));
+                localStorage.setItem('email', formData.get('email'));
+                localStorage.setItem('username', formData.get('username'));
+                // You should hash or encrypt the password before saving it
+        
+                // Redirect to index.html
+                window.location.href = 'index.html';
+            }
+        </script>
+        
+    </main>
+    <footer>
+        <p>&copy; 2024 EcoTracker. Toate drepturile rezervate.</p>
+    </footer>
+</body>
+</html>
