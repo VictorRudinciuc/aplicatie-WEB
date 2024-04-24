@@ -25,12 +25,27 @@
             <h2>Sfaturi Personalizate</h2>
             <p>Aici vei găsi sfaturi personalizate pentru a reduce amprenta ta ecologică.</p>
             <ul>
-                <li>Utilizează transportul public sau bicicleta pentru a reduce emisiile de carbon.</li>
-                <li>Alege produse locale și de sezon pentru a reduce impactul asupra mediului.</li>
-                <li>Economisește energie acasă prin înlocuirea becurilor cu LED-uri și oprirea aparatelor electronice în standby.</li>
-                <li>Reciclează cât mai mult posibil și evită produsele de unică folosință.</li>
-                <li>Plantează arbori și grădinițe pentru a compensa emisiile de carbon și a promova biodiversitatea.</li>
+                <script>
+                    var carbonFootprint = localStorage.getItem('carbonFootprint');
+                    if (carbonFootprint) {
+                        carbonFootprint = parseFloat(carbonFootprint);
+                        if (carbonFootprint < 10) {
+                            document.write("<li>Alege să mergi pe jos, cu bicicleta sau să utilizezi transportul public ori de câte ori poți.</li>");
+                        } else if (carbonFootprint >= 10 && carbonFootprint < 20) {
+                            document.write("<li>Redu consumul de carne și optează pentru o dietă mai vegetariană.</li>");
+                        } else {
+                            document.write("<li>Investește în surse de energie regenerabilă pentru locuința ta.</li>");
+                        }
+
+                        document.write ('<li>Amprenta de carbon asociată: ' + carbonFootprint + ' kgCO2e</li>');
+                    } 
+                    else{
+                        document.write ('<li>Calculeaza amprenta de carbon <a href="consum.html">aici</a></li>');
+                    }
+                    
+                </script>
             </ul>
+            
         </section>
     </main>
     <footer>
