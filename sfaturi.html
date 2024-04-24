@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTracker - Sfaturi Personalizate</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>EcoTracker</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Acasă</a></li>
+                <li><a href="consum.html">Monitorizare Consum</a></li>
+                <li><a href="provocari.html">Provocări și Recompense</a></li>
+                <li><a href="sfaturi.html">Sfaturi Personalizate</a></li>
+                <li><a href="comunitate.html">Comunitate</a></li>
+                <li id="usernameDisplay" style="display: none;"></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="tips">
+            <h2>Sfaturi Personalizate</h2>
+            <p>Aici vei găsi sfaturi personalizate pentru a reduce amprenta ta ecologică.</p>
+            <ul>
+                <script>
+                    var carbonFootprint = localStorage.getItem('carbonFootprint');
+                    if (carbonFootprint) {
+                        carbonFootprint = parseFloat(carbonFootprint);
+                        if (carbonFootprint < 10) {
+                            document.write("<li>Alege să mergi pe jos, cu bicicleta sau să utilizezi transportul public ori de câte ori poți.</li>");
+                        } else if (carbonFootprint >= 10 && carbonFootprint < 20) {
+                            document.write("<li>Redu consumul de carne și optează pentru o dietă mai vegetariană.</li>");
+                        } else {
+                            document.write("<li>Investește în surse de energie regenerabilă pentru locuința ta.</li>");
+                        }
+
+                        document.write ('<li>Amprenta de carbon asociată: ' + carbonFootprint + ' kgCO2e</li>');
+                    } 
+                    else{
+                        document.write ('<li>Calculeaza amprenta de carbon <a href="consum.html">aici</a></li>');
+                    }
+                    
+                </script>
+            </ul>
+            
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 EcoTracker. Toate drepturile rezervate.</p>
+    </footer>
+</body>
+</html>

@@ -12,6 +12,11 @@
             var combustibilConsum = document.getElementById('combustibil').value;
             var amprenta = (apaConsum * 0.5) + (electricitateConsum * 1.2) + (combustibilConsum * 2);
             document.getElementById('amprenta-text').innerText = 'Amprenta de carbon asociată: ' + amprenta.toFixed(2) + ' kgCO2e';
+            
+        
+        localStorage.setItem('carbonFootprint', amprenta.toFixed(2));
+        
+        
         }
     </script>
 </head>
