@@ -105,3 +105,10 @@ main {
 .provocari li {
     margin-bottom: 0.5rem;
 }
+#saved-data {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-right: 20px;
+    width: 250px;
+    float: left;
+}

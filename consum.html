@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monitorizare Consum - EcoTracker</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+
+    </style>
     <script>
         function calculeazaAmprenta() {
             var apaConsum = document.getElementById('apa').value;
@@ -30,12 +33,13 @@
 
         function displaySavedData() {
             var savedData = JSON.parse(localStorage.getItem('carbonFootprints')) || [];
-            var displayText = "Date salvate:\n";
+            var displayText = "<strong>Date salvate:</strong><br>";
             savedData.forEach(function(data) {
-                displayText += 'Amprenta de carbon: ' + data.amprenta + ' kgCO2e la ' + data.time + '\n';
+                displayText += '<div>Amprenta de carbon: ' + data.amprenta + ' kgCO2e la ' + data.time + '</div>';
             });
-            alert(displayText);
+            document.getElementById('saved-data').innerHTML = displayText;
         }
+        window.onload = displaySavedData;
     </script>
 </head>
 <body>
@@ -52,6 +56,7 @@
         </nav>
     </header>
     <main>
+        <div id="saved-data"></div>
         <section class="consum-form">
             <h2>Introdu datele de consum</h2>
             <label for="apa">Consum de apă (L):</label>
@@ -62,7 +67,7 @@
             <input type="number" id="combustibil" name="combustibil" required>
             <button type="button" class="btn" onclick="calculeazaAmprenta()">Calculează</button>
             <p id="amprenta-text"></p>
-            <button type="button" class="btn" onclick="displaySavedData()">Vezi date salvate</button>
+            
         </section>
     </main>
     <footer>
