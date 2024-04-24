@@ -26,9 +26,12 @@
             <p>Aici vei găsi sfaturi personalizate pentru a reduce amprenta ta ecologică.</p>
             <ul>
                 <script>
-                    var carbonFootprint = localStorage.getItem('carbonFootprint');
-                    if (carbonFootprint) {
-                        carbonFootprint = parseFloat(carbonFootprint);
+                    var savedData = JSON.parse(localStorage.getItem('carbonFootprints'));
+                    if (savedData && savedData.length > 0) {
+                        // Displaying the most recent saved data
+                        var latestData = savedData[savedData.length - 1];
+                        var carbonFootprint = parseFloat(latestData.amprenta);
+                        
                         if (carbonFootprint < 10) {
                             document.write("<li>Alege să mergi pe jos, cu bicicleta sau să utilizezi transportul public ori de câte ori poți.</li>");
                         } else if (carbonFootprint >= 10 && carbonFootprint < 20) {
@@ -37,12 +40,10 @@
                             document.write("<li>Investește în surse de energie regenerabilă pentru locuința ta.</li>");
                         }
 
-                        document.write ('<li>Amprenta de carbon asociată: ' + carbonFootprint + ' kgCO2e</li>');
-                    } 
-                    else{
-                        document.write ('<li>Calculeaza amprenta de carbon <a href="consum.html">aici</a></li>');
+                        document.write('<li>Amprenta de carbon asociată: ' + carbonFootprint + ' kgCO2e</li>');
+                    } else {
+                        document.write('<li>Nu există date salvate încă.</li>');
                     }
-                    
                 </script>
             </ul>
             

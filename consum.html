@@ -5,19 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monitorizare Consum - EcoTracker</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+
+    </style>
     <script>
         function calculeazaAmprenta() {
             var apaConsum = document.getElementById('apa').value;
             var electricitateConsum = document.getElementById('electricitate').value;
             var combustibilConsum = document.getElementById('combustibil').value;
             var amprenta = (apaConsum * 0.5) + (electricitateConsum * 1.2) + (combustibilConsum * 2);
-            document.getElementById('amprenta-text').innerText = 'Amprenta de carbon asociată: ' + amprenta.toFixed(2) + ' kgCO2e';
             
-        
-        localStorage.setItem('carbonFootprint', amprenta.toFixed(2));
-        
-        
+            var currentDate = new Date();
+            var timeOfCalculation = currentDate.toLocaleString();
+            var data = {
+                amprenta: amprenta.toFixed(2),
+                time: timeOfCalculation
+            };
+            
+            // Save data to localStorage
+            var storedData = JSON.parse(localStorage.getItem('carbonFootprints')) || [];
+            storedData.push(data);
+            localStorage.setItem('carbonFootprints', JSON.stringify(storedData));
+            
+            // Display amprenta
+            document.getElementById('amprenta-text').innerText = 'Amprenta de carbon asociată: ' + data.amprenta + ' kgCO2e la ' + data.time;
         }
+
+        function displaySavedData() {
+            var savedData = JSON.parse(localStorage.getItem('carbonFootprints')) || [];
+            var displayText = "<strong>Date salvate:</strong><br>";
+            savedData.forEach(function(data) {
+                displayText += '<div>Amprenta de carbon: ' + data.amprenta + ' kgCO2e la ' + data.time + '</div>';
+            });
+            document.getElementById('saved-data').innerHTML = displayText;
+        }
+        window.onload = displaySavedData;
     </script>
 </head>
 <body>
@@ -34,6 +56,7 @@
         </nav>
     </header>
     <main>
+        <div id="saved-data"></div>
         <section class="consum-form">
             <h2>Introdu datele de consum</h2>
             <label for="apa">Consum de apă (L):</label>
@@ -45,7 +68,6 @@
             <button type="button" class="btn" onclick="calculeazaAmprenta()">Calculează</button>
             <p id="amprenta-text"></p>
             
-            </form>
         </section>
     </main>
     <footer>
