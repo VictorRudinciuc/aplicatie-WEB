@@ -11,12 +11,30 @@
             var electricitateConsum = document.getElementById('electricitate').value;
             var combustibilConsum = document.getElementById('combustibil').value;
             var amprenta = (apaConsum * 0.5) + (electricitateConsum * 1.2) + (combustibilConsum * 2);
-            document.getElementById('amprenta-text').innerText = 'Amprenta de carbon asociată: ' + amprenta.toFixed(2) + ' kgCO2e';
             
-        
-        localStorage.setItem('carbonFootprint', amprenta.toFixed(2));
-        
-        
+            var currentDate = new Date();
+            var timeOfCalculation = currentDate.toLocaleString();
+            var data = {
+                amprenta: amprenta.toFixed(2),
+                time: timeOfCalculation
+            };
+            
+            // Save data to localStorage
+            var storedData = JSON.parse(localStorage.getItem('carbonFootprints')) || [];
+            storedData.push(data);
+            localStorage.setItem('carbonFootprints', JSON.stringify(storedData));
+            
+            // Display amprenta
+            document.getElementById('amprenta-text').innerText = 'Amprenta de carbon asociată: ' + data.amprenta + ' kgCO2e la ' + data.time;
+        }
+
+        function displaySavedData() {
+            var savedData = JSON.parse(localStorage.getItem('carbonFootprints')) || [];
+            var displayText = "Date salvate:\n";
+            savedData.forEach(function(data) {
+                displayText += 'Amprenta de carbon: ' + data.amprenta + ' kgCO2e la ' + data.time + '\n';
+            });
+            alert(displayText);
         }
     </script>
 </head>
@@ -44,8 +62,7 @@
             <input type="number" id="combustibil" name="combustibil" required>
             <button type="button" class="btn" onclick="calculeazaAmprenta()">Calculează</button>
             <p id="amprenta-text"></p>
-            
-            </form>
+            <button type="button" class="btn" onclick="displaySavedData()">Vezi date salvate</button>
         </section>
     </main>
     <footer>
